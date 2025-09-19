@@ -1,0 +1,37 @@
+apiVersion: policy.gradle.com/v1
+kind: PackageUrl
+metadata:
+  name: purls-none-match-lombok
+  labels:
+    policy.example.com/java: build
+    owner: DevSecOps
+    scope: dev-test
+spec:
+  labels:
+    devsecops.example.com/compliance/severity: critical
+    policy.example.com/enforcement/point: build-warning
+  description: Disallow lombok dependency
+  remediation: Remove lombok dependency from project
+  matchingStrategy: none-match
+  purls:
+  - pkg:maven/org.projectlombok/lombok
+
+---
+
+apiVersion: policy.gradle.com/v1
+kind: PackageUrl
+metadata:
+  name: none-match-purl-spring-beans-6.2.7
+  labels:
+    policy.example.com/java: build
+    owner: DevSecOps
+    scope: dev-test
+spec:
+  labels:
+    devsecops.example.com/compliance/severity: critical
+    policy.example.com/enforcement/point: build-warning
+  description: Find usages of spring 6.2.7
+  remediation: Upgrade dependency to spring 6.2.7
+  matchingStrategy: none-match
+  purls:
+  - pkg:maven/org.springframework/*@6.2.7

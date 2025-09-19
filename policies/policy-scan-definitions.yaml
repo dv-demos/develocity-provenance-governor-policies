@@ -1,0 +1,11 @@
+apiVersion: policy.gradle.com/v1
+kind: PolicyScanDefinition
+metadata:
+  name: java-build
+  labels:
+    owner: DevTeam
+spec:
+  description: Policy scan definition for Java builds
+  policySelector:
+    matchLabels:
+      policy.example.com/java: build

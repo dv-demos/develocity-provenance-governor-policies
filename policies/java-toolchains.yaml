@@ -1,0 +1,44 @@
+apiVersion: policy.gradle.com/v1
+kind: JavaToolchain
+metadata:
+  name: none-match-oracle-java-toolchain
+  labels:
+    policy.example.com/java: build
+    owner: DevSecOps
+    scope: dev-test
+spec:
+  labels:
+    policy.example.com/enforcement/point: build
+    devsecops.example.com/compliance/severity: critical
+  description: Disallow Oracle Java Toolchains in builds.
+  remediation: Update the build to use Azul Zulu Java toolchain.
+  matchingStrategy: none-match
+  toolchains:
+  - vendor: oracle
+
+---
+
+apiVersion: policy.gradle.com/v1
+kind: JavaToolchain
+metadata:
+  name: must-match-azul-java-toolchain
+  labels:
+    policy.example.com/java: build
+    owner: DevSecOps
+    scope: dev-test
+spec:
+  labels:
+    policy.example.com/enforcement/point: build
+    devsecops.example.com/compliance/severity: critical
+  description: Builds must use Azul Zulu Java in builds.
+  remediation: Update the build to use Azul Zulu Java (17 or 21).
+  matchingStrategy: must-match
+  toolchains:
+  - vendor: Azul Systems, Inc.
+    versions:
+    - 21.0.8
+    - 21.0.7
+    - 21.0.6
+    - 17.0.16
+    - 17.0.15
+    - 17.0.14

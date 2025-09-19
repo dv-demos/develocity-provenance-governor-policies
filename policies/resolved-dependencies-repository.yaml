@@ -1,0 +1,20 @@
+apiVersion: policy.gradle.com/v1
+kind: ResolvedDependenciesRepository
+metadata:
+  name: must-match-repositories
+  labels:
+    policy.example.com/java-21: ""
+    policy.example.com/java-17: deny-purl
+    policy.example.com/java: build
+    owner: DevSecOps
+    scope: dev-test
+
+spec:
+  labels:
+    devsecops.example.com/compliance/severity: critical
+    policy.example.com/enforcement/point: build-warning
+  description: Require all dependencies to come from Artifactory
+  remediation: Remove the offending repository from build configuration
+  matchingStrategy: must-match
+  uris:
+  - https://develocitytia.jfrog.io/artifactory/maven-local/
