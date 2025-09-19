@@ -21,7 +21,7 @@ spec:
 apiVersion: policy.gradle.com/v1
 kind: PackageUrl
 metadata:
-  name: none-match-purl-spring-beans-6.2.7
+  name: required-spring-boot-version
   labels:
     policy.example.com/java: build
     owner: DevSecOps
@@ -30,8 +30,8 @@ spec:
   labels:
     devsecops.example.com/compliance/severity: critical
     policy.example.com/enforcement/point: build-warning
-  description: Find usages of spring 6.2.7
-  remediation: Upgrade dependency to spring 6.2.7
-  matchingStrategy: none-match
+  description: Require usages of spring boot 2.5.1
+  remediation: Upgrade dependency to spring boot 2.5.1
+  matchingStrategy: must-match
   purls:
-  - pkg:maven/org.springframework/*@6.2.7
+  - pkg:maven/org.springframework.boot/spring-boot-dependencies@2.5.1
